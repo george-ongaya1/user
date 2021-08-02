@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../rest.service';
+import { Users } from '../users';
 
 @Component({
   selector: 'app-repository',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./repository.component.css']
 })
 export class RepositoryComponent implements OnInit {
-
-  constructor() { }
+users:Users[]=[]
+  constructor(public rs:RestService) { }
 
   ngOnInit(): void {
+    this.rs.getUsers().subscribe((response)=>{
+    this.users=response
+    })
   }
 
 }
